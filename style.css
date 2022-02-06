@@ -1,0 +1,42 @@
+body{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(52, 179, 230);
+}
+.container-main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  background-image: image-set("./assets/cripto.jpg");
+  width: 1200px;
+  height: 750px;
+  border-radius: 25px 25px 75px 25px;
+}
+.screen{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 80%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 25px 25px 75px 25px;
+  box-shadow: inset 1px 1px 2px 2px gray;
+  
+}
+.bitcoin, .ethereum{
+  margin: 10px;
+  width: 50%;
+  height: 35%;
+  border-radius: 18px;
+  background-color: rgb(185, 208, 233);
+  box-shadow: 1px 1px 2px 2px gray;
+  text-align: center;
+  
+}
+input, button{
+  font: inherit;
+}
