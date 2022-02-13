@@ -1,19 +1,43 @@
-/*fetch(`https://api.coingecko.com/api/v3/coins/list`)
+/*fetch(`https://api.coingecko.com/api/v3/coins/list`)*/
 
-const fetch = (input) =>
-window
-.fetch(input, {
-method: "GET",
-})
-.then((res) => res.json());*/
-const URL = `https://api.coingecko.com/api/v3/coins/list`;
-const pedirMoneda = async () =>{
-  const resultado = fetch(URL)
-  console.log(resultado)
+const URL = "https://api.coingecko.com/api/v3/coins/";
+
+const llamarMoneda = async (nombreMoneda) => {
+
+	const resultado = await fetch(URL + nombreMoneda);
+	const resultadoParseado = await resultado.json();
+
+    if (typeof resultadoParseado.name === 'undefined') {
+        alert("No se ha encontrado la Criptomoneda");
+    } else {
+        const datosMonedas = [resultadoParseado.name, 
+            "ATH: " + resultadoParseado.market_data.ath.eur + "€", 
+            "Current: " + resultadoParseado.market_data.current_price.eur + "€", "Rank: " + resultadoParseado.coingecko_rank];
+
+        return datosMonedas;
+    }
+};
+
+const ponerDatos = async (idCaja, nombreMoneda, titulo) => {
+
+  const caja = document.querySelector(idCaja);
+  const arrayDatosMonedas = await llamarMoneda(nombreMoneda);
+  
+  if (typeof arrayDatosMonedas !== 'undefined') {
+
+      for(let i=0; i<4; i++) {
+          const linea = document.createElement("p");
+          linea.textContent = arrayDatosMonedas[i];
+          caja.appendChild(linea);
+      }
+               
+      document.getElementById(titulo).textContent = arrayDatosMonedas[0];
+    
+  }
 }
 
-pedirUsuario();
-
+ponerDatos("#caja1", "bitcoin", "#titulo1");
+ponerDatos("#caja2", "ethereum", "#titulo2");
 
 /*const divTarjeta = document.querySelector(".tarjeta");
 const divMuroTarjetas = document.querySelector("#muroDeTarjetas");
